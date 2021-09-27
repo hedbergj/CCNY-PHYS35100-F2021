@@ -1,0 +1,35 @@
+In[419]:= a={2,4,5}
+b={1,-2,3}
+Out[419]= {2,4,5}
+Out[420]= {1,-2,3}
+In[421]:= Dot[a,b]
+Out[421]= 9
+In[422]:= Cross[a,b]
+Out[422]= {22,-1,-8}
+In[423]:= ClearAll["Global`*"]
+In[424]:= r = .05; 
+area =Pi r^2;
+m=.15;
+g=9.8;
+Cd = 0.47;
+ρ=1.29;
+c=1/2 ρ area Cd;
+θ=Pi/4
+v0=40;
+Out[431]= π/4
+In[433]:= diffeqs = {m x''[t]== -c x'[t]*Sqrt[x'[t]^2+y'[t]^2],m y''[t]== -m g-c y'[t]*Sqrt[x'[t]^2+y'[t]^2],
+x[0]==0,
+x'[0]== v0 Cos[θ],
+y[0]==1,
+y'[0]== v0 Sin[θ]
+};
+In[434]:= solutions = NDSolve[diffeqs,{x,y},{t,0,6}]
+Out[434]= {{x->InterpolatingFunction[Domain: {{0.,6.}}
+Output: scalar
+
+],y->InterpolatingFunction[Domain: {{0.,6.}}
+Output: scalar
+
+]}}
+In[435]:= ParametricPlot[{x[t]/.solutions[[1,1]],y[t]/.solutions[[1,2]]},{t,0,5}]
+Out[435]= 
